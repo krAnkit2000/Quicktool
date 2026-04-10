@@ -1,38 +1,488 @@
-.App {
-  text-align: center;
+/* App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #f8fafc;
+  color: #334155;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* --- Navbar Styles --- */
+.navbar {
+  background-color: #2563eb;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
 
-.App-header {
-  background-color: #282c34;
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: #3b82f6;
+}
+
+/* --- Dashboard Layout --- */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.dashboard-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #1e293b;
+}
+
+/* Responsive Grid Magic */
+.tools-grid {
+  display: grid;
+  /* Ye line apne aap mobile me 1, tablet me 2 aur PC me 3 column banayegi */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* --- Tool Cards Styles --- */
+.tool-card {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: #93c5fd;
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #eff6ff;
+  color: #2563eb;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.tool-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* --- Empty Box Style --- */
+.tool-card.empty {
+  background-color: transparent;
+  border: 2px dashed #cbd5e1;
+  box-shadow: none;
+}
+
+.tool-card.empty:hover {
+  background-color: #f1f5f9;
+  transform: none;
+  border-color: #94a3b8;
+}
+
+.empty-text {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+
+
+/* image convert  */
+
+/* Google Fonts import for clean look */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #f8fafc; /* Light gray background */
+  color: #334155;
+}
+
+/* --- General Layout --- */
+.app-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+/* --- Navbar Styles --- */
+.navbar {
+  background-color: #2563eb;
   color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
 }
 
-@keyframes App-logo-spin {
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.nav-links a:hover {
+  background-color: #3b82f6;
+}
+
+/* --- Dashboard Styles --- */
+.dashboard-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #1e293b;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* --- Tool Card Styles --- */
+.tool-card {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: #93c5fd;
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #eff6ff;
+  color: #2563eb;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.tool-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.tool-card.empty {
+  background-color: transparent;
+  border: 2px dashed #cbd5e1;
+  box-shadow: none;
+}
+
+.tool-card.empty:hover {
+  background-color: #f1f5f9;
+  transform: none;
+  border-color: #94a3b8;
+}
+
+.empty-text {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* --- Image Converter Page Styles --- */
+.converter-container {
+  background-color: white;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: #1d4ed8;
+}
+
+.back-btn svg {
+  margin-right: 0.5rem;
+  width: 20px;
+  height: 20px;
+}
+
+.converter-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #1e293b;
+}
+
+.upload-box {
+  border: 2px dashed #93c5fd;
+  background-color: #eff6ff;
+  padding: 3.5rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 2rem;
+  transition: background-color 0.2s;
+}
+
+.upload-box:hover {
+  background-color: #dbeafe;
+}
+
+.upload-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-icon {
+  color: #3b82f6;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem auto;
+  display: block;
+}
+
+.upload-text {
+  color: #475569;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.settings-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8fafc;
+  padding: 1.2rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.format-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.format-selector label {
+  font-weight: 600;
+  color: #334155;
+}
+
+.format-select {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  background-color: white;
+}
+
+.format-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.convert-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.convert-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.convert-btn:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* navbar */
+.nav-brand {
+  position: relative;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  cursor: pointer;
+  padding: 5px 12px;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+}
+
+/* "My" Part - Slim and Minimal */
+.my-text {
+  color: #b9b9c1;
+  font-weight: 800; /* Patla font modern lagta hai */
+  margin-right: 2px;
+}
+
+/* "Tools" Part - Bold and Gradient */
+.tools-text {
+  background: linear-gradient(135deg, #f3f5f8 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+/* Stylish Animated Underline */
+.nav-brand::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  
+  background: #60a5fa;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  box-shadow: 0 0 9px rgba(96, 165, 250, 0.8);
+}
+
+/* Hover Effects */
+.nav-brand:hover {
+
+  backdrop-filter: blur(4px);
+  transform: translateY(-1px);
+}
+
+.nav-brand:hover::after {
+  width: 80%; /* Underline expand hogi */
+}
+
+/* "Tools" text hover glow */
+.nav-brand:hover .tools-text {
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.6));
+}
+
+
+/* new tools  */
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}
+
+.animate-spin {
+  animation: spin 3s linear infinite;
 }

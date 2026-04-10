@@ -1,23 +1,49 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import Dashboard from './components/Dashboard';
+import ImgConvert from './Pages/ImgConvert';
+import ImgCompress from './Pages/ImgCompress';
+import UuidGen from './Pages/UuidGen';
+import ImgBgRemove from './Pages/ImgBgRemove';
+import PdfEditor from './Pages/PdfEditor';
+
 import './App.css';
 
 function App() {
+  // 1. Ye state hona zaroori hai
+  const [activeTool, setActiveTool] = useState('dashboard'); 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-gray-50 font-sans">
+      
+      {/* 2. Navbar mein pass kariye */}
+      <Navbar setActiveTool={setActiveTool} /> 
+      
+      <div className="container mx-auto px-4 py-8">
+        
+        {/* 3. YAHAN Dashboard mein pass karna sabse zaroori hai */}
+        {activeTool === 'dashboard' && (
+          <Dashboard setActiveTool={setActiveTool} /> 
+        )}
+        
+        {/* 4. ImgConvert mein bhi pass kariye (Back button ke liye) */}
+        {activeTool === 'img-convert' && (
+          <ImgConvert setActiveTool={setActiveTool} /> 
+        )}
+        {activeTool === 'img-compress' && <ImgCompress setActiveTool={setActiveTool} />}
+       {activeTool === 'uuid' && <UuidGen setActiveTool={setActiveTool} />}
+        
+
+        {/* 5. Background Remover Page */}
+        {activeTool === 'img-bgremove' && (
+          <ImgBgRemove setActiveTool={setActiveTool} /> 
+        )}
+
+        {/* 6.PDF Editor Tool */}
+{activeTool === 'pdf-edit' && (
+  <PdfEditor setActiveTool={setActiveTool} /> 
+)}
+      </div>
     </div>
   );
 }
