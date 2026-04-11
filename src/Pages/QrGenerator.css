@@ -1,0 +1,87 @@
+/* src/Pages/QrGenerator.css */
+
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+}
+
+.qr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.reset-btn {
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #dc2626;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+  background: #fecaca;
+  transform: scale(1.02);
+}
+
+.qr-input-group {
+  width: 100%;
+  text-align: left;
+}
+
+.qr-input-group label {
+  font-weight: 500;
+  color: #475569;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.qr-input {
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.qr-input:focus {
+  border-color: #8b5cf6;
+}
+
+.qr-display-area {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f5f9;
+  display: inline-block;
+}
+
+.qr-action-buttons {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.share-btn {
+  background-color: #8b5cf6 !important;
+}
+
+.share-btn:hover {
+  background-color: #7c3aed !important;
+}

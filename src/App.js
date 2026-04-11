@@ -6,7 +6,7 @@ import ImgCompress from './Pages/ImgCompress';
 import UuidGen from './Pages/UuidGen';
 import ImgBgRemove from './Pages/ImgBgRemove';
 import PdfEditor from './Pages/PdfEditor';
-
+import QrGenerator from './Pages/QrGenerator';
 import './App.css';
 
 function App() {
@@ -42,6 +42,10 @@ function App() {
         {/* 6.PDF Editor Tool */}
 {activeTool === 'pdf-edit' && (
   <PdfEditor setActiveTool={setActiveTool} /> 
+)}
+
+{activeTool === 'qr-gen' && (
+  <QrGenerator setActiveTool={setActiveTool} /> 
 )}
       </div>
     </div>

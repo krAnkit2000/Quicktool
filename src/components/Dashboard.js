@@ -8,8 +8,9 @@ const Dashboard = ({ setActiveTool }) => {
     { id: 'uuid', title: 'UUID', active: true },
     { id: 'img-bgremove', title: 'Img BgRemove', active: true },
     { id: 'pdf-edit', title: 'PDF Edit', active: true },
-    { id: 'QR Code Generator', title: 'QR Code Generator', active: true },
+      { id: 'qr-gen', title: 'QR Generator', active: true },
     { id: 'empty', title: 'Empty', active: false },
+  
     
   ];
 
