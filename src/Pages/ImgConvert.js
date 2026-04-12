@@ -8,7 +8,15 @@ const ImgConvert = ({ setActiveTool }) => {
   const [isConverting, setIsConverting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  // Handle file selection and filter unsupported formats
+  // --- REFRESH LOGIC START ---
+  const handleReset = () => {
+    setFiles([]);
+    setConvertedFiles([]);
+    setErrorMsg('');
+    setIsConverting(false);
+  };
+  // --- REFRESH LOGIC END ---
+
   const handleFileChange = (e) => {
     setErrorMsg('');
     if (e.target.files) {
@@ -29,7 +37,6 @@ const ImgConvert = ({ setActiveTool }) => {
     }
   };
 
-  // Loop through all selected files and convert them
   const handleConvertAll = async () => {
     if (files.length === 0) return;
     setIsConverting(true);
@@ -48,7 +55,6 @@ const ImgConvert = ({ setActiveTool }) => {
     setIsConverting(false);
   };
 
-  // Core conversion logic using HTML5 Canvas
   const convertSingleFile = (file, format) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -74,12 +80,10 @@ const ImgConvert = ({ setActiveTool }) => {
     });
   };
 
-  // Intelligent download: Direct file for single, ZIP for multiple
   const handleDownload = async () => {
     if (convertedFiles.length === 0) return;
 
     if (convertedFiles.length === 1) {
-      // Direct download for single image
       const file = convertedFiles[0];
       const link = document.createElement('a');
       link.href = file.dataUrl;
@@ -87,7 +91,6 @@ const ImgConvert = ({ setActiveTool }) => {
       link.download = fileName;
       link.click();
     } else {
-      // Bundle into ZIP for multiple images
       const zip = new JSZip();
       convertedFiles.forEach((file) => {
         const base64Data = file.dataUrl.split(',')[1];
@@ -105,18 +108,45 @@ const ImgConvert = ({ setActiveTool }) => {
 
   return (
     <div className="converter-container">
-      <button onClick={() => setActiveTool('dashboard')} className="back-btn">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{width:'20px', marginRight:'5px'}}>
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
+      {/* Header with Back and Refresh buttons */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
+        <button onClick={() => setActiveTool('dashboard')} className="back-btn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{width:'18px', marginRight:'5px'}}>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
         Back to Dashboard
-      </button>
+        </button>
+
+        {files.length > 0 && (
+          <button 
+            onClick={handleReset}
+            style={{ 
+              background: '#fee2e2', 
+              color: '#dc2626', 
+              border: '1px solid #fecaca', 
+              padding: '5px 12px', 
+              borderRadius: '6px', 
+              cursor: 'pointer',
+              fontSize: '0.8rem',
+              fontWeight: '600',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px'
+            }}
+          >
+            <svg style={{width:'14px'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            Reset
+          </button>
+        )}
+      </div>
 
       <h2 className="converter-title" style={{ textAlign: 'center' }}>Bulk Image Converter</h2>
 
       {errorMsg && <div className="error-box" style={{color:'red', textAlign:'center', marginBottom: '10px'}}>{errorMsg}</div>}
 
-      <div className="upload-box" style={{ minHeight: '150px' }}>
+      <div className="upload-box" style={{ minHeight: '120px' }}>
         <input 
           type="file" 
           multiple 
@@ -132,14 +162,14 @@ const ImgConvert = ({ setActiveTool }) => {
       </div>
 
       {files.length > 0 && (
-        <div style={{maxHeight:'120px', overflowY:'auto', margin:'10px 0', fontSize:'0.85rem', color:'#64748b', border: '1px solid #eee', padding: '10px', borderRadius: '8px'}}>
+        <div style={{maxHeight:'100px', overflowY:'auto', margin:'10px 0', fontSize:'0.8rem', color:'#64748b', border: '1px solid #eee', padding: '10px', borderRadius: '8px'}}>
             {files.map((f, i) => <div key={i}>✅ {f.name}</div>)}
         </div>
       )}
 
-      <div className="settings-bar" style={{justifyContent: 'center', gap: '15px', marginTop: '20px'}}>
+      <div className="settings-bar" style={{justifyContent: 'center', gap: '15px', marginTop: '15px'}}>
         <div className="format-selector">
-          <label>Target Format:</label>
+          <label>Format:</label>
           <select value={selectedFormat} onChange={(e) => {setSelectedFormat(e.target.value); setConvertedFiles([]);}} className="format-select">
             <option value="JPG">JPG</option>
             <option value="PNG">PNG</option>

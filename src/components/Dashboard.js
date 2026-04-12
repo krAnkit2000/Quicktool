@@ -16,7 +16,7 @@ const Dashboard = ({ setActiveTool }) => {
 
   return (
     <div style={{ width: '100%' }}>
-      <h1 className="dashboard-title" style={{ fontSize: '1.8rem', marginBottom: '20px', color: '#1e293b' }}>
+      <h1 className="dashboard-title" style={{ fontSize: '1rem', marginBottom: '20px', color: '#1e293b' }}>
         Dashboard Tools
       </h1>
       
