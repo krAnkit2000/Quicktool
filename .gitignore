@@ -25,3 +25,7 @@ yarn-error.log*
 src/bgAPI.js
 .vercel
 .env*.local
+
+
+
+

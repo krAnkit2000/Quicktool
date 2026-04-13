@@ -212,10 +212,11 @@ body {
 
 /* --- Tool Card Styles --- */
 .tool-card {
+  min-width: 20px;
   background-color: white;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1rem;
   height: 160px;
   display: flex;
   flex-direction: column;
@@ -223,7 +224,8 @@ body {
   align-items: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-top-color: rgb(255, 16, 36);
+  box-shadow: 0 2px 3px rgba(34, 248, 184, 0.05);
 }
 
 .tool-card:hover {
@@ -486,3 +488,4 @@ body {
 .animate-spin {
   animation: spin 3s linear infinite;
 }
+

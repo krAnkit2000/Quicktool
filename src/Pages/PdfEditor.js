@@ -1,94 +1,171 @@
-import React, { useState } from 'react';
-import { PDFDocument, rgb } from 'pdf-lib';
+import { useState } from "react";
+import "./PdfEditor.css";
 
-const PdfEditor = ({ setActiveTool }) => {
-  const [file, setFile] = useState(null);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [customText, setCustomText] = useState("Edited with MyTools");
+// List of all PDF tools
+const tools = [
+  { id: "merge",    label: "Merge PDF",    icon: "⊕", desc: "Combine multiple PDFs into one file",   color: "#e63946", multiple: true  },
+  { id: "split",    label: "Split PDF",    icon: "✂", desc: "Split a PDF into separate pages",        color: "#f4a261", multiple: false },
+  { id: "compress", label: "Compress PDF", icon: "⬇", desc: "Reduce the size of your PDF",            color: "#2a9d8f", multiple: false },
+  { id: "toword",   label: "PDF to Word",  icon: "W", desc: "Convert PDF to a Word document",         color: "#457b9d", multiple: false },
+  { id: "toexcel",  label: "PDF to Excel", icon: "✦", desc: "Convert PDF to an Excel spreadsheet",   color: "#1d8348", multiple: false },
+  { id: "lock",     label: "Lock PDF",     icon: "🔒", desc: "Protect your PDF with a password",     color: "#6d4c41", multiple: false },
+];
 
-  const handleFileChange = (e) => {
-    if (e.target.files[0]) {
-      setFile(e.target.files[0]);
-    }
+export default function PDFTools({ setActiveTool }) {
+  const [selectedTool, setSelectedTool] = useState(null);
+  const [files, setFiles]               = useState([]);
+  const [password, setPassword]         = useState("");
+  const [status, setStatus]             = useState("");
+
+  const openTool = (tool) => {
+    setSelectedTool(tool);
+    setFiles([]);
+    setPassword("");
+    setStatus("");
   };
 
-  const modifyPdf = async () => {
-    if (!file) return;
-    setIsProcessing(true);
+  // Goes back to 6-tool grid
+  const goBack = () => {
+    setSelectedTool(null);
+    setFiles([]);
+    setPassword("");
+    setStatus("");
+  };
 
-    try {
-      // 1. File ko arrayBuffer mein convert karein
-      const existingPdfBytes = await file.arrayBuffer();
+  const handleRefresh = () => {
+    setSelectedTool(null);
+    setFiles([]);
+    setPassword("");
+    setStatus("");
+  };
 
-      // 2. PDF load karein
-      const pdfDoc = await PDFDocument.load(existingPdfBytes);
-      
-      // 3. Pehla page nikaalein
-      const pages = pdfDoc.getPages();
-      const firstPage = pages[0];
-      const { width, height } = firstPage.getSize();
-
-      // 4. Page par text add karein
-      firstPage.drawText(customText, {
-        x: 50,
-        y: height - 50,
-        size: 20,
-        color: rgb(0.23, 0.51, 0.96), // Blue color
-      });
-
-      // 5. Modified PDF save karein
-      const pdfBytes = await pdfDoc.save();
-      
-      // 6. Download link banayein
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `Edited_${file.name}`;
-      link.click();
-
-    } catch (err) {
-      console.error("PDF Edit Error:", err);
-      alert("PDF process karne mein error aaya.");
-    } finally {
-      setIsProcessing(false);
-    }
+  const handleProcess = () => {
+    if (files.length === 0) { setStatus("⚠ Please select a file first!"); return; }
+    if (selectedTool.id === "lock" && !password) { setStatus("⚠ Please enter a password!"); return; }
+    // TODO: Connect backend API here
+    setStatus(`✅ "${selectedTool.label}" started! Connect your backend to process.`);
   };
 
   return (
-    <div className="converter-container">
-      <button onClick={() => setActiveTool('dashboard')} className="back-btn">
-        ← Back to Dashboard
-      </button>
+    <div className="pdf-tools-page">
+      <div className="pdf-tools-card">
 
-      <h2 className="converter-title" style={{ textAlign: 'center' }}>AI PDF Editor</h2>
+        {/* Top bar:
+            - No tool selected → show "Back to Dashboard"
+            - Tool selected    → show "← Back" (hide "Back to Dashboard") */}
+        <div className="pdf-tools-topbar">
+          {!selectedTool ? (
+            // Show Back to Dashboard only on grid view
+            <button onClick={() => setActiveTool('dashboard')} className="back-btn">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ width: '18px', marginRight: '5px' }}>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Back to Dashboard
+            </button>
+          ) : (
+            // Show Back (to grid) when a tool is open
+            <button className="back-btn" onClick={goBack}>
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ width: '18px', marginRight: '5px' }}>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Back
+            </button>
+          )}
 
-      <div className="upload-box" style={{ minHeight: '150px' }}>
-        <input type="file" accept="application/pdf" onChange={handleFileChange} className="upload-input" />
-        <p className="upload-text">
-          {file ? `Selected: ${file.name}` : "Upload PDF to add text"}
-        </p>
-      </div>
-
-      {file && (
-        <div className="settings-bar" style={{ flexDirection: 'column', gap: '15px' }}>
-          <div style={{ width: '100%' }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Text to Add:</label>
-            <input 
-              type="text" 
-              value={customText} 
-              onChange={(e) => setCustomText(e.target.value)}
-              style={{ padding: '10px', width: '100%', borderRadius: '8px', border: '1px solid #ddd' }}
-            />
-          </div>
-
-          <button className="convert-btn" onClick={modifyPdf} disabled={isProcessing}>
-            {isProcessing ? 'Processing PDF...' : 'Add Text & Download'}
+          <button className="pdf-tools-refresh-btn" onClick={handleRefresh}>
+            ↻ Refresh
           </button>
         </div>
-      )}
+
+        {/* Title + subtitle — only show on grid view, hide when tool is open */}
+        {!selectedTool && (
+          <>
+            <h1 className="pdf-tools-title">PDF Tools</h1>
+            <p className="pdf-tools-subtitle">Choose what you want to do</p>
+          </>
+        )}
+
+        {/* 6-tool grid OR detail panel */}
+        {!selectedTool ? (
+
+          // Grid of 6 tools
+          <div className="pdf-tools-grid">
+            {tools.map((tool) => (
+              <button
+                key={tool.id}
+                className="pdf-tool-btn"
+                style={{ borderTopColor: tool.color }}
+                onClick={() => openTool(tool)}
+              >
+                <div className="pdf-tool-icon" style={{ background: tool.color }}>
+                  {tool.icon}
+                </div>
+                <div className="pdf-tool-label">{tool.label}</div>
+                <div className="pdf-tool-desc">{tool.desc}</div>
+              </button>
+            ))}
+          </div>
+
+        ) : (
+
+          // Detail panel — no back button here anymore (moved to topbar)
+          <div className="pdf-detail-panel">
+
+            <div className="pdf-detail-icon" style={{ background: selectedTool.color }}>
+              {selectedTool.icon}
+            </div>
+
+            <h2 className="pdf-detail-title">{selectedTool.label}</h2>
+            <p className="pdf-detail-desc">{selectedTool.desc}</p>
+
+            {/* File upload */}
+            <label>
+              <input
+                type="file"
+                accept=".pdf"
+                multiple={selectedTool.multiple}
+                onChange={(e) => { setFiles(Array.from(e.target.files)); setStatus(""); }}
+                style={{ display: "none" }}
+              />
+              <div className="pdf-upload-area">
+                <span className="pdf-upload-icon">📂</span>
+                <span className="pdf-upload-text">
+                  {files.length > 0
+                    ? files.map((f) => f.name).join(", ")
+                    : selectedTool.multiple
+                    ? "Click to select multiple PDFs"
+                    : "Click to select a PDF"}
+                </span>
+              </div>
+            </label>
+
+            {/* Password field — only for Lock PDF */}
+            {selectedTool.id === "lock" && (
+              <input
+                type="password"
+                placeholder="Enter password..."
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="pdf-password-input"
+              />
+            )}
+
+            {/* Process button */}
+            <button
+              className="pdf-process-btn"
+              style={{ background: selectedTool.color }}
+              onClick={handleProcess}
+            >
+              {selectedTool.label}
+            </button>
+
+            {/* Status message */}
+            {status && <div className="pdf-status-box">{status}</div>}
+
+          </div>
+        )}
+
+      </div>
     </div>
   );
-};
-
-export default PdfEditor;
+}

@@ -1,0 +1,249 @@
+
+
+/* Page wrapper — no background, no padding */
+.pdf-tools-page {
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Main content card — this is the only visible box */
+.pdf-tools-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 22px;
+  max-width: 860px;
+  margin: 0 auto;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+}
+
+/* Top bar — Back button + Refresh button inside the card */
+.pdf-tools-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+/* Back to Dashboard button */
+.back-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: opacity 0.15s;
+}
+.back-btn:hover {
+  opacity: 0.75;
+}
+
+/* Refresh button */
+.pdf-tools-refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 7px 14px;
+  border-radius: 8px;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.pdf-tools-refresh-btn:hover {
+  background: #e2e8f0;
+}
+
+/* Page title */
+.pdf-tools-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #1e293b;
+  text-align: center;
+  margin: 0 0 6px;
+}
+
+/* Page subtitle */
+.pdf-tools-subtitle {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.88rem;
+  margin: 0 0 28px;
+}
+
+/* 6-tool grid */
+.pdf-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+/* Individual tool button */
+.pdf-tool-btn {
+  background: #f8fafc;
+  border: none;
+  border-radius: 12px;
+  padding: 20px 16px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+  border-top: 4px solid transparent;
+}
+.pdf-tool-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+}
+
+/* Icon box inside tool button */
+.pdf-tool-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  margin: 0 auto 12px;
+  font-weight: bold;
+}
+
+/* Tool label */
+.pdf-tool-label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+/* Tool description */
+.pdf-tool-desc {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+/* ── Detail Panel (when a tool is selected) ── */
+.pdf-detail-panel {
+  max-width: 460px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Back button inside detail panel */
+.pdf-detail-back {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Large icon in detail panel */
+.pdf-detail-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #fff;
+  margin: 0 auto 14px;
+  font-weight: bold;
+}
+
+.pdf-detail-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 6px;
+}
+
+.pdf-detail-desc {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 22px;
+}
+
+/* File upload area */
+.pdf-upload-area {
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  background: #f8fafc;
+  transition: border-color 0.15s, background 0.15s;
+}
+.pdf-upload-area:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.pdf-upload-icon {
+  font-size: 30px;
+}
+
+.pdf-upload-text {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* Password input */
+.pdf-password-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.pdf-password-input:focus {
+  border-color: #3b82f6;
+}
+
+/* Process button */
+.pdf-process-btn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: opacity 0.15s;
+}
+.pdf-process-btn:hover {
+  opacity: 0.88;
+}
+
+/* Status message */
+.pdf-status-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.85rem;
+  color: #166534;
+}
