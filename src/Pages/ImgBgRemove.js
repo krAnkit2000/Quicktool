@@ -19,7 +19,7 @@ const ImgBgRemove = ({ setActiveTool }) => {
     }
   };
 
-  // NAYA: Badi image ko resize karne ka function
+  
   const resizeImage = (file) => {
     return new Promise((resolve) => {
       const reader = new FileReader();
@@ -32,7 +32,7 @@ const ImgBgRemove = ({ setActiveTool }) => {
           let width = img.width;
           let height = img.height;
 
-          // Agar image 2000px se badi hai toh use chota karo (API limit fix)
+         
           const MAX_WIDTH = 2000;
           if (width > MAX_WIDTH) {
             height *= MAX_WIDTH / width;
@@ -58,7 +58,7 @@ const ImgBgRemove = ({ setActiveTool }) => {
     setError('');
 
     try {
-      // 1. Image ko pehle compress/resize karo
+      // First, compress or resize the image.
       const processedBlob = await resizeImage(file);
 
       const formData = new FormData();

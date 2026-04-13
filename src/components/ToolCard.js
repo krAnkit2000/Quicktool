@@ -1,30 +1,29 @@
 import React from 'react';
 
-// ─── Har tool ka alag icon ─────────────────────────────────────────────────
 const ToolIcons = {
   'img-convert': (
-    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+    <svg fill="none" viewBox="0 0 34 34" stroke="currentColor" strokeWidth="1.8">
       <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4-4 4 4 4-8 4 8" />
-      <rect x="3" y="3" width="18" height="18" rx="2" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="3" y="3" width="28" height="28" rx="2" strokeLinecap="round" strokeLinejoin="round" />
       <path strokeLinecap="round" strokeLinejoin="round" d="M16 3l2 2-2 2M8 3L6 5l2 2" />
     </svg>
   ),
   'img-compress': (
-    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
-      <rect x="3" y="3" width="18" height="18" rx="2" />
+    <svg fill="none" viewBox="0 0 34 34" stroke="currentColor" strokeWidth="1.8">
+      <rect x="3" y="3" width="28" height="28" rx="2" />
       <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v4a2 2 0 01-2 2H3M15 3v4a2 2 0 002 2h4M9 21v-4a2 2 0 00-2-2H3M15 21v-4a2 2 0 012-2h4" />
     </svg>
   ),
   'uuid': (
-    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
-      <rect x="2" y="7" width="20" height="10" rx="2" />
+    <svg fill="none" viewBox="0 0 44 44" stroke="currentColor" strokeWidth="1.8">
+      <rect x="2" y="7" width="28" height="28" rx="2" />
       <path strokeLinecap="round" strokeLinejoin="round" d="M6 11h.01M10 11h.01M14 11h.01M18 11h.01M6 13h4M14 13h4" />
     </svg>
   ),
   'img-bgremove': (
-    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+    <svg fill="none" viewBox="0 0 44 44" stroke="currentColor" strokeWidth="1.8">
       <path strokeLinecap="round" strokeLinejoin="round" d="M4 4l6 6m0 0l6 6M10 10L4 16M10 10l6-6" />
-      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <rect x="3" y="3" width="38" height="38" rx="2" />
       <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
     </svg>
   ),
@@ -74,15 +73,15 @@ const ToolCard = ({ id, title, isActive }) => {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
           <svg
-            style={{ width: '24px', height: '24px', color: '#94a3b8', animation: 'spin 3s linear infinite' }}
+            style={{ width: '44px', height: '44px', color: '#e90800', animation: 'spin 3s linear infinite' }}
             fill="none" viewBox="0 0 24 24" stroke="currentColor"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
-          <span className="empty-text" style={{ fontSize: '1.1rem', color: '#64748b' }}>New Tool</span>
+          <span className="empty-text" style={{ fontSize: '1.1rem', color: '#ff0101' }}>New Tool</span>
           <span style={{
-            fontSize: '0.7rem', color: '#3b82f6', backgroundColor: '#eff6ff',
+            fontSize: '0.7rem', color: '#0661f4', backgroundColor: '#f5f5f5',
             padding: '2px 8px', borderRadius: '12px', fontWeight: '600', letterSpacing: '0.5px'
           }}>
             UNDER DEVELOPMENT

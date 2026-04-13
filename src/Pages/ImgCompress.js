@@ -11,7 +11,7 @@ const ImgCompress = ({ setActiveTool }) => {
   const [compressedSize, setCompressedSize] = useState(0);
   const [isCompressing, setIsCompressing] = useState(false);
 
-  // File size ko KB/MB mein dikhane ke liye helper function
+  // Helper function to display file size in KB/MB.
   const formatBytes = (bytes) => {
     if (bytes === 0) return '0 Bytes';
     const k = 1024;
@@ -40,7 +40,7 @@ const ImgCompress = ({ setActiveTool }) => {
     };
   }, [previewUrl]);
 
-  // Agar user slider change kare, toh pehle wali compressed file hata do
+  // If the user changes the slider, then remove the previously compressed file.
   const handleQualityChange = (e) => {
     setQuality(e.target.value);
     setCompressedUrl(null);
@@ -60,18 +60,19 @@ const ImgCompress = ({ setActiveTool }) => {
       canvas.height = img.height;
       const ctx = canvas.getContext('2d');
       
-      // White background fill (transparent PNGs ke liye)
+      // White background fill 
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0);
 
-      // Quality ko 0.1 se 1.0 ke beech format karna (slider 1-100 hai)
+      //Format the quality between 0.1 and 1.0 (the slider ranges from 1 to 100).
       const compressionRatio = quality / 100;
       
-      // Compression best kaam karta hai JPEG ya WEBP par
+      // Compression works best on JPEG or WEBP.
       const dataUrl = canvas.toDataURL('image/jpeg', compressionRatio);
       
-      // Base64 string se approximate file size calculate karna
+      // Calculate approximate file size from a Base64 string.
+
       const base64Length = dataUrl.length - 'data:image/jpeg;base64,'.length;
       const sizeInBytes = Math.ceil(base64Length * 0.75);
       
