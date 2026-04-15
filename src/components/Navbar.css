@@ -37,13 +37,13 @@
 }
 
 .logo-text {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.5px;
 }
 
-.my-text { color: #1e293b; }
-.tools-text { color: #8b5cf6; }
+
+.tools-text { color: #fc8803; }
 
 .nav-links {
   display: flex;
@@ -58,7 +58,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  /* font-size: 0.95rem; */
+  font-size: 1rem;
   transition: color 0.3s;
 }
 
@@ -75,3 +75,57 @@
 
 
 
+
+/* navbar */
+.nav-brand {
+  position: relative;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  cursor: pointer;
+  padding: 5px 12px;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+}
+
+
+/* Stylish Animated Underline */
+.nav-brand::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+
+  background: #fa9601;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  box-shadow: 0 0 9px rgba(96, 165, 250, 0.8);
+}
+
+/* Hover Effects */
+.nav-brand:hover {
+
+  backdrop-filter: blur(4px);
+  transform: translateY(-1px);
+}
+
+.nav-brand:hover::after {
+  width: 80%; /* Underline expand hogi */
+}
+
+/* "Tools" text hover glow */
+.nav-brand:hover .tools-text {
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.6));
+}
+
+/* "My" Part - Slim and Minimal */
+.my-text {
+  color: #e28502;
+  font-weight: 800; /* Patla font modern lagta hai */
+  margin-right: 2px;
+}

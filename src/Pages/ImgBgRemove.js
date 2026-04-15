@@ -67,7 +67,7 @@ const ImgBgRemove = ({ setActiveTool }) => {
 
   return (
     <div className="converter-container" style={{ maxWidth: '600px', margin: 'auto' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
         <button onClick={() => setActiveTool('dashboard')} className="back-btn">← Back to Dashboard</button>
         <button onClick={resetAll} className="reset-btn" style={{background:'#fee2e2', color:'#dc2626', border:'none', padding:'5px 12px', borderRadius:'6px', cursor:'pointer', fontWeight:'600'}}>Reset</button>
       </div>

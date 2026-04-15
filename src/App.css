@@ -311,26 +311,7 @@ body {
   cursor: not-allowed;
 }
 
-/* navbar */
-.nav-brand {
-  position: relative;
-  font-size: 2.2rem;
-  font-weight: 800;
-  letter-spacing: -1.5px;
-  cursor: pointer;
-  padding: 5px 12px;
-  border-radius: 12px;
-  transition: all 0.4s ease;
-  display: flex;
-  align-items: center;
-}
 
-/* "My" Part - Slim and Minimal */
-.my-text {
-  color: #b9b9c1;
-  font-weight: 800; /* Patla font modern lagta hai */
-  margin-right: 2px;
-}
 
 /* "Tools" Part - Bold and Gradient */
 .tools-text {
@@ -338,38 +319,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
-}
-
-/* Stylish Animated Underline */
-.nav-brand::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 3px;
-  
-  background: #60a5fa;
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-  border-radius: 10px;
-  box-shadow: 0 0 9px rgba(96, 165, 250, 0.8);
-}
-
-/* Hover Effects */
-.nav-brand:hover {
-
-  backdrop-filter: blur(4px);
-  transform: translateY(-1px);
-}
-
-.nav-brand:hover::after {
-  width: 80%; /* Underline expand hogi */
-}
-
-/* "Tools" text hover glow */
-.nav-brand:hover .tools-text {
-  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.6));
 }
 
 
@@ -409,7 +358,6 @@ body {
   right: -32px;
   background: #abb1b8; /* Slate color instead of bright blue */
   color: #0a6efa;
- 
   padding: 2px 35px;
   transform: rotate(45deg);
   font-weight: 800;
