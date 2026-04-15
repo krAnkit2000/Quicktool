@@ -1,21 +1,22 @@
 import React from 'react';
+import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ setActiveTool }) => {
   return (
-    <nav className="navbar" style={{ padding: '0.8rem 2rem' }}>
-      <div className="nav-brand">
-        <a href="/" style={{ 
-          textDecoration: 'none', 
-          display: 'flex', 
-          alignItems: 'baseline' 
-        }}>
-          <span className="my-text">My</span>
-          <span className="tools-text">Tools</span>
-        </a>
-      </div>
+    <nav className="navbar">
+      <div className="nav-container">
+        <div className="nav-brand" onClick={() => setActiveTool('dashboard')}>
+          <div className="logo-icon">⚡</div>
+          <div className="logo-text">
+            <span className="my-text">My</span>
+            <span className="tools-text">Tools</span>
+          </div>
+        </div>
+        
+        <div className="nav-links">
+          <button className="nav-item" onClick={() => setActiveTool('dashboard')}>Home</button>
       
-      <div className="nav-links">
-        {/* Your buttons here */}
+        </div>
       </div>
     </nav>
   );

@@ -11,40 +11,6 @@ body {
   color: #334155;
 }
 
-/* --- Navbar Styles --- */
-.navbar {
-  background-color: #2563eb;
-  color: white;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-}
-
-.nav-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  margin-left: 1.5rem;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: background-color 0.3s;
-}
-
-.nav-links a:hover {
-  background-color: #3b82f6;
-}
-
 /* --- Dashboard Layout --- */
 .container {
   max-width: 1200px;
@@ -58,29 +24,9 @@ body {
   color: #1e293b;
 }
 
-/* Responsive Grid Magic */
-.tools-grid {
-  display: grid;
-  /* Ye line apne aap mobile me 1, tablet me 2 aur PC me 3 column banayegi */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
 
 /* --- Tool Cards Styles --- */
-.tool-card {
-  background-color: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 1.5rem;
-  height: 160px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
+/*  */
 
 .tool-card:hover {
   transform: translateY(-5px);
@@ -143,10 +89,7 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-body {
-  background-color: #f8fafc; /* Light gray background */
-  color: #334155;
-}
+
 
 /* --- General Layout --- */
 .app-wrapper {
@@ -155,54 +98,10 @@ body {
   flex-direction: column;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  width: 100%;
-}
 
-/* --- Navbar Styles --- */
-.navbar {
-  background-color: #2563eb;
-  color: white;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.nav-brand {
-  font-size: 1.5rem;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  margin-left: 1.5rem;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: background-color 0.2s;
-}
-
-.nav-links a:hover {
-  background-color: #3b82f6;
-}
 
 /* --- Dashboard Styles --- */
-.dashboard-title {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: #1e293b;
-}
+
 
 .tools-grid {
   display: grid;
