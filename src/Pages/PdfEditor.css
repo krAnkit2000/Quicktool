@@ -86,18 +86,29 @@
 
 /* Individual tool button */
 .pdf-tool-btn {
-  background: #f8fafc;
-  border: none;
+  background: #ffffff; 
+  border: 1px solid #e2e8f0; 
   border-radius: 12px;
   padding: 20px 16px;
   cursor: pointer;
   text-align: center;
-  transition: transform 0.15s, box-shadow 0.15s;
-  border-top: 4px solid transparent;
+  transition: all 0.2s ease;
+  
+  
+  border-top: 4px solid transparent; 
+  border-bottom: 4px solid transparent; 
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .pdf-tool-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  
+  border-left-color: #cbd5e1;
+  border-right-color: #cbd5e1;
 }
 
 /* Icon box inside tool button */

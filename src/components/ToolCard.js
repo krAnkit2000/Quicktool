@@ -4,7 +4,7 @@ const ToolIcons = {
   'img-convert': (
     <svg fill="none" viewBox="0 0 34 34" stroke="currentColor" strokeWidth="1.8">
       <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4-4 4 4 4-8 4 8" />
-      <rect x="3" y="3" width="28" height="28" rx="2" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="3" y="3" width="28" height="28" rx="2" />
       <path strokeLinecap="round" strokeLinejoin="round" d="M16 3l2 2-2 2M8 3L6 5l2 2" />
     </svg>
   ),
@@ -40,77 +40,48 @@ const ToolIcons = {
       <rect x="14" y="3" width="7" height="7" rx="1" />
       <rect x="3" y="14" width="7" height="7" rx="1" />
       <path strokeLinecap="round" strokeLinejoin="round" d="M14 14h2v2h-2zM18 14h2v2h-2zM14 18h2v2h-2zM18 18h2v2h-2z" />
-      <rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none" />
-      <rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none" />
-      <rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none" />
     </svg>
   ),
 };
 
-// ─── Tool ke liye accent color ─────────────────────────────────────────────
 const ToolColors = {
-  'img-convert':  { bg: '#eff6ff', icon: '#3b82f6' },
-  'img-compress': { bg: '#f0fdf4', icon: '#22c55e' },
-  'uuid':         { bg: '#fdf4ff', icon: '#a855f7' },
-  'img-bgremove': { bg: '#fff7ed', icon: '#f97316' },
-  'pdf-edit':     { bg: '#fef2f2', icon: '#ef4444' },
-  'qr-gen':       { bg: '#f0fdfa', icon: '#14b8a6' },
+  'img-convert':  { bg: '#eff6ff', icon: '#3b82f6', border: '#3b82f6' },
+  'img-compress': { bg: '#f0fdf4', icon: '#22c55e', border: '#22c55e' },
+  'uuid':         { bg: '#fdf4ff', icon: '#a855f7', border: '#a855f7' },
+  'img-bgremove': { bg: '#fff7ed', icon: '#f97316', border: '#f97316' },
+  'pdf-edit':     { bg: '#fef2f2', icon: '#ef4444', border: '#ef4444' },
+  'qr-gen':       { bg: '#f0fdfa', icon: '#14b8a6', border: '#14b8a6' },
 };
 
-// ─── ToolCard Component ────────────────────────────────────────────────────
 const ToolCard = ({ id, title, isActive }) => {
-
-  // Empty / Under Development card
+  // --- Empty / Under Development Card ---
   if (!isActive) {
     return (
-      <div className="tool-card empty" style={{ cursor: 'wait', position: 'relative', overflow: 'hidden' }}>
-        <div style={{
-          position: 'absolute', top: '10px', right: '-30px',
-          background: '#3b82f6', color: 'white', fontSize: '0.6rem',
-          padding: '2px 30px', transform: 'rotate(45deg)', fontWeight: 'bold'
-        }}>
-          DEV
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-          <svg
-            style={{ width: '44px', height: '44px', color: '#e90800', animation: 'spin 3s linear infinite' }}
-            fill="none" viewBox="0 0 24 24" stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-          <span className="empty-text" style={{ fontSize: '1.1rem', color: '#ff0101' }}>New Tool</span>
-          <span style={{
-            fontSize: '0.7rem', color: '#0661f4', backgroundColor: '#f5f5f5',
-            padding: '2px 8px', borderRadius: '12px', fontWeight: '600', letterSpacing: '0.5px'
-          }}>
-            UNDER DEVELOPMENT
-          </span>
+      <div className="tool-card empty" style={{ cursor: 'not-allowed' }}>
+      
+        <div className="dev-badge">DEV</div>
+        
+        <div className="empty-content">
+          <div className="card-icon gear-animate">
+             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+             </svg>
+          </div>
+          <h3>Coming Soon</h3>
+          <span className="status-tag">Under Development</span>
         </div>
       </div>
     );
   }
 
-  // Active tool card
-  const color = ToolColors[id] || { bg: '#f1f5f9', icon: '#64748b' };
+  // --- Active Tool Card ---
+  const color = ToolColors[id] || { bg: '#f1f5f9', icon: '#64748b', border: '#64748b' };
   const icon  = ToolIcons[id];
 
   return (
-    <div className="tool-card">
-      <div className="card-icon" style={{
-        backgroundColor: color.bg,
-        color: color.icon,
-        width: '48px',
-        height: '48px',
-        borderRadius: '50%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: '0 auto',
-      }}>
-        <div style={{ width: '24px', height: '24px' }}>
-          {icon}
-        </div>
+    <div className="tool-card active-card" style={{ '--accent-color': color.border }}>
+      <div className="card-icon" style={{ backgroundColor: color.bg, color: color.icon }}>
+        <div style={{ width: '26px', height: '26px' }}>{icon}</div>
       </div>
       <h3>{title}</h3>
     </div>

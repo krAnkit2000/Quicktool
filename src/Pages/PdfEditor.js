@@ -299,7 +299,10 @@ const handleRefresh = () => {
               <button
                 key={tool.id}
                 className="pdf-tool-btn"
-                style={{ borderTopColor: tool.color }}
+              style={{ 
+    borderTopColor: tool.color, 
+    borderBottomColor: tool.color 
+  }}
                 onClick={() => openTool(tool)}
               >
                 <div className="pdf-tool-icon" style={{ background: tool.color }}>{tool.icon}</div>

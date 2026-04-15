@@ -57,24 +57,6 @@ body {
   color: #1e293b;
 }
 
-/* --- Empty Box Style --- */
-.tool-card.empty {
-  background-color: transparent;
-  border: 2px dashed #cbd5e1;
-  box-shadow: none;
-}
-
-.tool-card.empty:hover {
-  background-color: #f1f5f9;
-  transform: none;
-  border-color: #94a3b8;
-}
-
-.empty-text {
-  color: #94a3b8;
-  font-weight: 500;
-}
-
 
 
 /* image convert  */
@@ -109,69 +91,85 @@ body {
   gap: 1.5rem;
 }
 
-/* --- Tool Card Styles --- */
+
+/* --- Tool Card Base --- */
 .tool-card {
-  min-width: 20px;
   background-color: white;
   border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 1rem;
-  height: 160px;
+  border-radius: 20px; /* Thoda zyada rounded modern lagta hai */
+  padding: 2rem;
+  height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+/* 1. Subtle Accent Line (Soft Indigo) */
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #6366f1; /* Soft Indigo */
+  opacity: 0.1; /* Normal state mein bahut halka */
   transition: all 0.3s ease;
-  border-top-color: rgb(255, 16, 36);
-  box-shadow: 0 2px 3px rgba(34, 248, 184, 0.05);
 }
 
+/* 2. Hover State - Indigo Glow */
 .tool-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  border-color: #93c5fd;
+  transform: translateY(-6px);
+  border-color: #edeff4;
+  box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.1);
 }
 
-.card-icon {
-  width: 50px;
-  height: 50px;
-  background-color: #eff6ff;
-  color: #2563eb;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
+.tool-card:hover::before {
+  opacity: 1; 
+  height: 5px;
 }
 
-.card-icon svg {
-  width: 24px;
-  height: 24px;
-}
-
-.tool-card h3 {
-  margin-top: 1rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1e293b;
-}
-
+/* 3. Under Development / Empty Tool Style (CLEAN) */
 .tool-card.empty {
-  background-color: transparent;
-  border: 2px dashed #cbd5e1;
-  box-shadow: none;
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  cursor: not-allowed;
+  opacity: 0.6; /* Faded look */
+}
+
+.tool-card.empty::before {
+  display: none; 
 }
 
 .tool-card.empty:hover {
-  background-color: #f1f5f9;
   transform: none;
-  border-color: #94a3b8;
+  box-shadow: none;
 }
 
-.empty-text {
-  color: #94a3b8;
-  font-weight: 500;
+/* 4. Icon Container Adjustment */
+.card-icon {
+  width: 52px;
+  height: 52px;
+  background-color: #f5f3ff;
+  color: #6366f1;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.tool-card:hover .card-icon {
+  background-color: #6366f1;
+  color: white; /* Hover par icon color invert hoga */
+  transform: scale(1.05);
 }
 
 /* --- Image Converter Page Styles --- */
@@ -389,3 +387,64 @@ body {
   animation: spin 3s linear infinite;
 }
 
+/* tools card  */
+/* Active Card Accent Logic */
+.active-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 4px;
+  background: var(--accent-color); /* Har tool ka apna color */
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.active-card:hover::before {
+  opacity: 1;
+}
+
+/* DEV Badge styling */
+.dev-badge {
+  position: absolute;
+  top: 12px;
+  right: -32px;
+  background: #abb1b8; /* Slate color instead of bright blue */
+  color: #0a6efa;
+ 
+  padding: 2px 35px;
+  transform: rotate(45deg);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Status Tag for "Under Development" */
+.status-tag {
+  font-size: 0.65rem;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-top: 5px;
+  border: 1px solid #e2e8f0;
+}
+
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.9; /* Lightly faded */
+}
+
+/* Animated Gear Icon */
+.gear-animate svg {
+  width: 40px;
+  height: 40px;
+  color: #94a3b8;
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

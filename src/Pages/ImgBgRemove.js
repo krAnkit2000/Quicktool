@@ -68,7 +68,7 @@ const ImgBgRemove = ({ setActiveTool }) => {
   return (
     <div className="converter-container" style={{ maxWidth: '600px', margin: 'auto' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-        <button onClick={() => setActiveTool('dashboard')} className="back-btn">← Back</button>
+        <button onClick={() => setActiveTool('dashboard')} className="back-btn">← Back to Dashboard</button>
         <button onClick={resetAll} className="reset-btn" style={{background:'#fee2e2', color:'#dc2626', border:'none', padding:'5px 12px', borderRadius:'6px', cursor:'pointer', fontWeight:'600'}}>Reset</button>
       </div>
 
@@ -77,7 +77,7 @@ const ImgBgRemove = ({ setActiveTool }) => {
       {error && <div style={{backgroundColor:'#fee2e2', color:'#ef4444', padding:'10px', borderRadius:'8px', marginBottom:'15px', textAlign:'center'}}>{error}</div>}
 
       <div className="upload-box" style={{ 
-          minHeight: '250px', 
+          minHeight: '200px', 
           display:'flex', 
           alignItems:'center', 
           justifyContent:'center', 
@@ -89,7 +89,7 @@ const ImgBgRemove = ({ setActiveTool }) => {
         
         {previewUrl ? (
           <img src={previewUrl} alt="Preview" style={{ 
-              maxHeight: '240px', 
+              maxHeight: '200px', 
               maxWidth: '90%', 
               objectFit: 'contain',
             
@@ -107,7 +107,7 @@ const ImgBgRemove = ({ setActiveTool }) => {
       </div>
 
       {/* Background Options */}
-      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+      <div style={{ marginTop: '1px', textAlign: 'center' }}>
         <p style={{ fontWeight: '600', marginBottom: '10px', color:'#475569' }}>Select Background Color:</p>
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
           {[
@@ -144,7 +144,7 @@ const ImgBgRemove = ({ setActiveTool }) => {
           </a>
         ) : (
           <button className="convert-btn" onClick={removeBackground} disabled={!file || isLoading} style={{ width: '100%' }}>
-            {isLoading ? 'Processing High Quality...' : `Remove & Set ${bgColor ? 'Color' : 'Transparent'}`}
+            {isLoading ? 'Processing High Quality...' : `Remove Background `}
           </button>
         )}
       </div>

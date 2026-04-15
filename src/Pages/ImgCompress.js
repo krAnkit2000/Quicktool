@@ -89,6 +89,7 @@ const ImgCompress = ({ setActiveTool }) => {
     const nameWithoutExt = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
     return `${nameWithoutExt}_compressed.jpg`;
   };
+  
 
   return (
     <div className="converter-container">
@@ -102,7 +103,7 @@ const ImgCompress = ({ setActiveTool }) => {
 
       <h2 className="converter-title" style={{ textAlign: 'center' }}>Image Compressor</h2>
 
-      {/* Upload Area (Same CSS as ImgConvert) */}
+      {/* Upload Area  */}
       <div className="upload-box" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <input 
           type="file" 
