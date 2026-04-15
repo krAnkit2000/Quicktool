@@ -16,7 +16,7 @@ You may also see any lint errors in the console.
 
 
 🚀 Key Features
-📄 PDF Expert Suite
+📄 PDF Expert 
 Merge PDF: Combine multiple files into one.
 
 Split PDF: Separate pages into individual files.
@@ -38,3 +38,35 @@ Compression: Fast image optimization for web performance.
 Smart QR Generator: Create custom QR codes with dynamic filenames and real-time preview.
 
 UUID Generator: Generate unique identifiers instantly.
+
+🛠️ Technical Stack
+Frontend: React.js
+
+Libraries: pdf-lib, jszip, qrcode.react, file-saver, pdfjs-dist.
+
+Deployment: Vercel (CI/CD integrated).
+
+Processing: Entirely client-side for maximum security and privacy.
+
+
+1. Clone the Repository
+
+git clone https://github.com/your-username/quicktool.git
+cd quicktool
+
+2. Install Dependencies
+npm install
+
+3. Start Development Server
+npm start
+The application will open at http://localhost:3000.
+
+4. Build for Production
+npm run build
+
+⚠️ Deployment Note
+When deploying to Vercel, ensure you set the following environment variable to avoid build failures due to lint warnings:
+
+Key: CI
+
+Value: false
