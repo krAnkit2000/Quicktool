@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";   // ✅ ADD
+import { useNavigate } from "react-router-dom";   
 
-const UuidGen = () => {   // ❌ setActiveTool hata diya
-  const navigate = useNavigate();   // ✅ ADD
-
+const UuidGen = () => {   
+  const navigate = useNavigate(); 
   const [uuids, setUuids] = useState([]);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState();
   const [isCopied, setIsCopied] = useState(false);
 
   const generateUuids = (numberOfUuids) => {
@@ -37,7 +36,7 @@ const UuidGen = () => {   // ❌ setActiveTool hata diya
   const handleCountChange = (e) => {
     const val = parseInt(e.target.value);
     if (isNaN(val) || val < 1) setCount(1);
-    else if (val > 50) setCount(50);
+    else if (val > 50) setCount(100);
     else setCount(val);
   };
 
@@ -66,7 +65,7 @@ const UuidGen = () => {   // ❌ setActiveTool hata diya
   return (
     <div className="converter-container">
 
-      {/* ✅ ROUTING FIX */}
+     
       <button onClick={() => navigate("/")} className="back-btn">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
