@@ -1,11 +1,15 @@
 import React from 'react';
 import './Navbar.css';
+import { useNavigate } from 'react-router-dom';
 
-const Navbar = ({ setActiveTool }) => {
+const Navbar = () => {
+  const navigate = useNavigate(); 
+
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <div className="nav-brand" onClick={() => setActiveTool('dashboard')}>
+        
+        <div className="nav-brand" onClick={() => navigate('/')}>
           <div className="logo-icon">⚡</div>
           <div className="logo-text">
             <span className="my-text">My</span>
@@ -14,9 +18,11 @@ const Navbar = ({ setActiveTool }) => {
         </div>
         
         <div className="nav-links">
-          <button className="nav-item" onClick={() => setActiveTool('dashboard')}>Home</button>
-      
+          <button className="nav-item" onClick={() => navigate('/')}>
+            Home
+          </button>
         </div>
+
       </div>
     </nav>
   );

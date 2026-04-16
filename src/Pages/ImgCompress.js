@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 
-const ImgCompress = ({ setActiveTool }) => {
+const ImgCompress = () => {
+  const navigate = useNavigate(); 
+
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null); 
   const [compressedUrl, setCompressedUrl] = useState(null);
   
   // Compression states
-  const [quality, setQuality] = useState(70); // Default 70% quality
+  const [quality, setQuality] = useState(90); 
   const [originalSize, setOriginalSize] = useState(0);
   const [compressedSize, setCompressedSize] = useState(0);
   const [isCompressing, setIsCompressing] = useState(false);
 
-  // Helper function to display file size in KB/MB.
   const formatBytes = (bytes) => {
     if (bytes === 0) return '0 Bytes';
     const k = 1024;
@@ -33,20 +35,17 @@ const ImgCompress = ({ setActiveTool }) => {
     }
   };
 
-  // Memory clean up
   useEffect(() => {
     return () => {
       if (previewUrl) URL.revokeObjectURL(previewUrl);
     };
   }, [previewUrl]);
 
-  // If the user changes the slider, then remove the previously compressed file.
   const handleQualityChange = (e) => {
     setQuality(e.target.value);
     setCompressedUrl(null);
   };
 
-  // Asli Compress Logic
   const handleCompress = () => {
     if (!file || !previewUrl) return;
     setIsCompressing(true);
@@ -60,18 +59,12 @@ const ImgCompress = ({ setActiveTool }) => {
       canvas.height = img.height;
       const ctx = canvas.getContext('2d');
       
-      // White background fill 
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0);
 
-      //Format the quality between 0.1 and 1.0 (the slider ranges from 1 to 100).
       const compressionRatio = quality / 100;
-      
-      // Compression works best on JPEG or WEBP.
       const dataUrl = canvas.toDataURL('image/jpeg', compressionRatio);
-      
-      // Calculate approximate file size from a Base64 string.
 
       const base64Length = dataUrl.length - 'data:image/jpeg;base64,'.length;
       const sizeInBytes = Math.ceil(base64Length * 0.75);
@@ -94,7 +87,7 @@ const ImgCompress = ({ setActiveTool }) => {
   return (
     <div className="converter-container">
       {/* Back Button */}
-      <button onClick={() => setActiveTool('dashboard')} className="back-btn">
+      <button onClick={() => navigate('/')} className="back-btn"> {/* ✅ changed */}
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
@@ -133,7 +126,6 @@ const ImgCompress = ({ setActiveTool }) => {
       {/* Settings & Controls */}
       <div className="settings-bar" style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '1.5rem' }}>
         
-        {/* Quality Slider Section */}
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
             <label style={{ fontWeight: '600', color: '#334155' }}>Image Quality: {quality}%</label>
@@ -157,7 +149,6 @@ const ImgCompress = ({ setActiveTool }) => {
           </div>
         </div>
 
-        {/* Action Button */}
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
           {compressedUrl ? (
             <a 

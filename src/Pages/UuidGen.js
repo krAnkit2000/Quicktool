@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";   // ✅ ADD
 
-const UuidGen = ({ setActiveTool }) => {
-  // Now using an array to store multiple UUIDs
+const UuidGen = () => {   // ❌ setActiveTool hata diya
+  const navigate = useNavigate();   // ✅ ADD
+
   const [uuids, setUuids] = useState([]);
   const [count, setCount] = useState(1);
   const [isCopied, setIsCopied] = useState(false);
 
-  // Secure UUID Generator for multiple counts
   const generateUuids = (numberOfUuids) => {
     const newUuids = [];
     const iterations = numberOfUuids || 1;
@@ -29,14 +30,12 @@ const UuidGen = ({ setActiveTool }) => {
     setIsCopied(false);
   };
 
-  // Generate default on mount
   useEffect(() => {
     generateUuids(1);
   }, []);
 
   const handleCountChange = (e) => {
     const val = parseInt(e.target.value);
-    // Setting limit between 1 and 50 to prevent performance lag
     if (isNaN(val) || val < 1) setCount(1);
     else if (val > 50) setCount(50);
     else setCount(val);
@@ -66,7 +65,9 @@ const UuidGen = ({ setActiveTool }) => {
 
   return (
     <div className="converter-container">
-      <button onClick={() => setActiveTool('dashboard')} className="back-btn">
+
+      {/* ✅ ROUTING FIX */}
+      <button onClick={() => navigate("/")} className="back-btn">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
@@ -75,7 +76,6 @@ const UuidGen = ({ setActiveTool }) => {
 
       <h2 className="converter-title" style={{ textAlign: 'center' }}>Bulk UUID Generator</h2>
 
-      {/* Input Section */}
       <div className="settings-bar" style={{ marginBottom: '20px', justifyContent: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <label style={{ fontWeight: '900' }}>Number of UUIDs:</label>
@@ -91,40 +91,37 @@ const UuidGen = ({ setActiveTool }) => {
         </div>
       </div>
 
-      
-
-      {/* Result Display Area */}
-<div 
-  className="upload-box" 
-  style={{ 
-    cursor: 'default', 
-    padding: '0.8rem 1.5rem', 
-    backgroundColor: '#f8fafc',
-    border: '2px solid #e2e8f0',
-   fontWeight:900,
-    minHeight: '60px', 
-    maxHeight: '180px', 
-    overflowY: 'auto',
-    textAlign: 'left',
-    display: 'block',
-    width: '100%',
-    borderRadius: '12px'
-  }}
->
-  {uuids.map((id, index) => (
-    <div key={index} style={{ 
-      fontFamily: 'monospace', 
-      fontSize: '1rem', 
-      padding: '8px 0',
-      borderBottom: index !== uuids.length - 1 ? '1px solid #e2e8f0' : 'none',
-      color: '#1e293b',
-      lineHeight: '1.4'
-    }}>
-      <span style={{ color: '#94a3b8', marginRight: '10px', userSelect: 'none' }}>{index + 1}.</span>
-      {id}
-    </div>
-  ))}
-</div>
+      <div 
+        className="upload-box" 
+        style={{ 
+          cursor: 'default', 
+          padding: '0.8rem 1.5rem', 
+          backgroundColor: '#f8fafc',
+          border: '2px solid #e2e8f0',
+          fontWeight:900,
+          minHeight: '60px', 
+          maxHeight: '180px', 
+          overflowY: 'auto',
+          textAlign: 'left',
+          display: 'block',
+          width: '100%',
+          borderRadius: '12px'
+        }}
+      >
+        {uuids.map((id, index) => (
+          <div key={index} style={{ 
+            fontFamily: 'monospace', 
+            fontSize: '1rem', 
+            padding: '8px 0',
+            borderBottom: index !== uuids.length - 1 ? '1px solid #e2e8f0' : 'none',
+            color: '#1e293b',
+            lineHeight: '1.4'
+          }}>
+            <span style={{ color: '#94a3b8', marginRight: '10px', userSelect: 'none' }}>{index + 1}.</span>
+            {id}
+          </div>
+        ))}
+      </div>
 
       <div className="settings-bar" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '20px' }}>
         <button 

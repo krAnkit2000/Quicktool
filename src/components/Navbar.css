@@ -3,7 +3,7 @@
   top: 0;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  backdrop-filter: blur(10px); 
   border-bottom: 1px solid #e2e8f0;
   padding: 0.8rem 0;
 }
@@ -70,7 +70,7 @@
 /* Mobile Responsive */
 @media (max-width: 600px) {
   .nav-links { gap: 12px; }
-  .nav-cta { display: none; } /* Mobile pe Premium button chhupa dega space ke liye */
+  .nav-cta { display: none; } 
 }
 
 
@@ -123,9 +123,9 @@
   filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.6));
 }
 
-/* "My" Part - Slim and Minimal */
+
 .my-text {
   color: #e28502;
-  font-weight: 800; /* Patla font modern lagta hai */
+  font-weight: 800; 
   margin-right: 2px;
 }

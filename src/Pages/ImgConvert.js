@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import JSZip from 'jszip'; 
+import { useNavigate } from 'react-router-dom'; // ✅ added
 
-const ImgConvert = ({ setActiveTool }) => {
+const ImgConvert = () => {
+  const navigate = useNavigate(); // ✅ added
+
   const [selectedFormat, setSelectedFormat] = useState('JPG'); 
   const [files, setFiles] = useState([]); 
   const [convertedFiles, setConvertedFiles] = useState([]); 
   const [isConverting, setIsConverting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  // --- REFRESH LOGIC START ---
   const handleReset = () => {
     setFiles([]);
     setConvertedFiles([]);
     setErrorMsg('');
     setIsConverting(false);
   };
-  // --- REFRESH LOGIC END ---
 
   const handleFileChange = (e) => {
     setErrorMsg('');
@@ -110,11 +111,13 @@ const ImgConvert = ({ setActiveTool }) => {
     <div className="converter-container">
       {/* Header with Back and Refresh buttons */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-        <button onClick={() => setActiveTool('dashboard')} className="back-btn">
+        
+        {/* ✅ ONLY CHANGE HERE */}
+        <button onClick={() => navigate('/')} className="back-btn">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{width:'18px', marginRight:'5px'}}>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
-        Back to Dashboard
+          Back to Dashboard
         </button>
 
         {files.length > 0 && (

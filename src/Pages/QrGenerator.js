@@ -1,8 +1,11 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from "react-router-dom";   // ✅ ADD
 import { QRCodeCanvas } from 'qrcode.react';
-import './QrGenerator.css'; // CSS File Import Karein
+import './QrGenerator.css';
 
-const QrGenerator = ({ setActiveTool }) => {
+const QrGenerator = () => {   // ❌ setActiveTool hata diya
+  const navigate = useNavigate();   // ✅ ADD
+
   const [text, setText] = useState(""); 
   const qrRef = useRef();
 
@@ -43,7 +46,9 @@ const QrGenerator = ({ setActiveTool }) => {
   return (
     <div className="converter-container qr-container">
       <div className="qr-header">
-        <button onClick={() => setActiveTool('dashboard')} className="back-btn">
+        
+      
+        <button onClick={() => navigate("/")} className="back-btn">
           ← Back
         </button>
         
