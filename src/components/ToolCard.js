@@ -57,16 +57,29 @@ const ToolIcons = {
       <path strokeLinecap="round" strokeLinejoin="round" d="M9 15H15M12 12V18" />
     </svg>
   ),
+  'VideoConverter': (
+    <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="none">
+      {/* Background Solid Shape like YouTube Logo */}
+      <rect x="2" y="5" width="22" height="14" rx="5" fill="#ef4444" />
+      {/* Center Play Button (White) */}
+      <path 
+        d="M10 9l5 3-5 3V9z" 
+        fill="#ffffff" 
+      />
+    </svg>
+  ),
 };
 
+
 const ToolColors = {
-  'img-convert':  { bg: '#eff6ff', icon: '#3b82f6', border: '#3b82f6' },
+  'img-convert':  { bg: '#eff6ff', icon: '#3b82f6', border: '#7e04f7' },
   'img-compress': { bg: '#f0fdf4', icon: '#22c55e', border: '#22c55e' },
-  'uuid':         { bg: '#fdf4ff', icon: '#a855f7', border: '#a855f7' },
-  'img-bgremove': { bg: '#fff7ed', icon: '#f97316', border: '#f97316' },
-  'pdf-edit':     { bg: '#fef2f2', icon: '#ef4444', border: '#ef4444' },
-  'qr-gen':       { bg: '#f0fdfa', icon: '#14b8a6', border: '#14b8a6' },
-  'make-pdf':  { bg: '#fff1f2', icon: '#f43f5e', border: '#f43f5e' },
+  'uuid':         { bg: '#fdf4ff', icon: '#800bee', border: '#7e2d41' },
+  'img-bgremove': { bg: '#fff7ed', icon: '#f97316', border: '#f76801' },
+  'pdf-edit':     { bg: '#fef2f2', icon: '#ef4444', border: '#8f6f6f' },
+  'qr-gen':       { bg: '#f0fdfa', icon: '#76ffef', border: '#04ffe2db' },
+  'VideoConverter': { bg: '#fff1f2', icon: '#f10707', border: '#fb0000' },
+  'make-pdf':  { bg: '#fff1f2', icon: '#0d2bd3', border: '#1fd543' },
 };
 
 const ToolCard = ({ id, title, isActive }) => {
