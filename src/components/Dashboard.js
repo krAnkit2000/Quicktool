@@ -8,12 +8,12 @@ const Dashboard = () => {
   const tools = [
     { id: 'img-convert',      title: 'Img Convert',     active: true  },
     { id: 'img-compress',     title: 'Img Compress',    active: true  },
+    { id: 'img-bgremove',     title: 'Img BgRemove',    active: true  },
     { id: 'pdf-edit',         title: 'PDF Tools',       active: true  },
     { id: 'make-pdf',         title: 'Make-Pdf',        active: true  },
     { id: 'uuid',             title: 'UUID',            active: true  },
-    { id: 'img-bgremove',     title: 'Img BgRemove',    active: true  },
-    { id: 'qr-gen',           title: 'QR Generator',    active: true  },
     { id: 'VideoConverter',   title: 'Youtube to audio',      active: true  },
+     { id: 'qr-gen',           title: 'QR Generator',    active: true  },
     { id: 'empty',            title: 'Empty',           active: false },
   ];
 
