@@ -3,7 +3,7 @@
   import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { fetchUnsplashImages } from '../ImageGeneratorAPI';
+import { fetchUnsplashImages , notifyDownload } from '../ImageGeneratorAPI';
 import './ImageGenerator.css';
 
 const ImageGenerator = () => {
@@ -40,22 +40,29 @@ const handleSearch = async (isNewSearch = true) => {
   setIsSearching(false);
 };
 
-  const downloadImage = async (imgUrl, downloadLocation, id) => {
-    try {
-      await fetch(`${downloadLocation}&client_id=${UNSPLASH_ACCESS_KEY}`);
-      const response = await fetch(imgUrl);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `Unsplash_${id}.jpg`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (e) {
-      window.open(imgUrl, '_blank');
-    }
-  };
+const downloadImage = async (imgUrl, downloadLocation, id) => {
+  try {
+    
+    await notifyDownload(downloadLocation);
+
+    
+    const response = await fetch(imgUrl);
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);   
+    const fileName = `${query.replace(/\s+/g, '_')}.jpg`;
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName; 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url); 
+  } catch (e) {
+  
+    window.open(imgUrl, '_blank');
+  }
+};
 
   return (
     <div className="main-container">
@@ -71,7 +78,7 @@ const handleSearch = async (isNewSearch = true) => {
           <span className="link-icon">🔍</span>
           <input 
             type="text" 
-            placeholder="Search high-res images..." 
+            placeholder="Search images..." 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />

@@ -39,14 +39,24 @@ const ToolIcons = {
     </svg>
   ),
 
-  'qr-gen': (
-    <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <rect x="3" y="3" width="7" height="7" rx="1" />
-      <rect x="14" y="3" width="7" height="7" rx="1" />
-      <rect x="3" y="14" width="7" height="7" rx="1" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M14 14h2v2h-2zM18 14h2v2h-2zM14 18h2v2h-2zM18 18h2v2h-2z" />
-    </svg>
-  ),
+'qr-gen': (
+  <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.6">
+    {/* Background Grid Pattern - Subtle */}
+    <path d="M3 8h18M3 16h18M8 3v18M16 3v18" strokeOpacity="0.1" strokeLinecap="round" />
+    
+    {/* The Focus Frame */}
+    <path d="M3 8V5a2 2 0 012-2h3m8 0h3a2 2 0 012 2v3m0 8v3a2 2 0 01-2 2h-3m-8 0H5a2 2 0 01-2-2v-3" strokeLinecap="round" />
+    
+    {/* Generative Pixels (The "AI" part) */}
+    <rect x="7" y="7" width="4" height="4" rx="1" fill="#ec4899" stroke="none" />
+    <rect x="13" y="7" width="4" height="4" rx="1" fill="#ec4899" fillOpacity="0.4" stroke="none" />
+    <rect x="7" y="13" width="4" height="4" rx="1" fill="#ec4899" fillOpacity="0.6" stroke="none" />
+    
+    {/* Magic Sparkle */}
+    <path d="M16 14l.5 1.5L18 16l-1.5.5L16 18l-.5-1.5L14 16l1.5-.5L16 14z" fill="#ec4899" stroke="none" />
+  </svg>
+),
+
   'make-pdf': (
     <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.8">
       {/* PDF Page Border */}
@@ -70,8 +80,25 @@ const ToolIcons = {
   
   ),
   'image-gen': (
-  <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.8">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+  <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.6">
+    {/* Modern Image Frame with rounded corners */}
+    <rect x="3" y="4" width="18" height="16" rx="3" strokeLinecap="round" />
+    
+    {/* Mountains inside - Clear Visual clue */}
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16l5-5 4 4 4-4 5 5" strokeOpacity="0.4" />
+    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" fillOpacity="0.2" strokeOpacity="0.4"/>
+    
+    {/* The Generative AI Wave / Magic Path (Pink Accent) */}
+    <path 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      d="M2 14l3-3.5a2 2 0 012.8 0L10 13M13 10.5l2.2-2.2a2 2 0 012.8 0L22 12" 
+      stroke="#ec4899" 
+      strokeWidth="2"
+    />
+    
+    {/* The Glimmer/Sparkle (Processing effect) */}
+    <path d="M19 8l.5 1.5L21 10l-1.5.5L19 12l-.5-1.5L17 10l1.5-.5L19 8z" fill="#ec4899" stroke="none" />
   </svg>
 )
 };
@@ -80,13 +107,14 @@ const ToolIcons = {
 const ToolColors = {
   'img-convert':  { bg: '#eff6ff', icon: '#3b82f6', border: '#7e04f7' },
   'img-compress': { bg: '#f0fdf4', icon: '#22c55e', border: '#22c55e' },
-  'uuid':         { bg: '#fdf4ff', icon: '#800bee', border: '#7e2d41' },
+  'image-gen': { bg: '#fdf2f8', icon: '#ec4899', border: '#fbcfe8' },
   'img-bgremove': { bg: '#fff7ed', icon: '#f97316', border: '#f76801' },
+  'uuid':         { bg: '#fdf4ff', icon: '#800bee', border: '#7e2d41' },
   'pdf-edit':     { bg: '#fef2f2', icon: '#ef4444', border: '#8f6f6f' },
   'qr-gen':       { bg: '#f0fdfa', icon: '#76ffef', border: '#04ffe2db' },
   'VideoConverter': { bg: '#fff1f2', icon: '#f10707', border: '#fb0000' },
   'make-pdf':  { bg: '#fff1f2', icon: '#0d2bd3', border: '#1fd543' },
-  'image-gen': { bg: '#fdf2f8', icon: '#ec4899', border: '#fbcfe8' }
+  
 };
 
 const ToolCard = ({ id, title, isActive }) => {

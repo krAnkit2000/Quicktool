@@ -94,6 +94,35 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   margin-top: 40px;
+  
+  /* --- Scroll Logic --- */
+  max-height: 650px; 
+  overflow-y: auto; 
+  padding: 15px;  
+  
+  /* Smooth scrolling experience */
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable; 
+}
+
+
+.image-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.image-grid::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.image-grid::-webkit-scrollbar-thumb {
+  background: #fbcfe8; 
+  border-radius: 10px;
+  border: 2px solid #f1f5f9;
+}
+
+.image-grid::-webkit-scrollbar-thumb:hover {
+  background: #ec4899; 
 }
 
 /* Individual Image Card */
