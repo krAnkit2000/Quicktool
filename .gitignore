@@ -27,4 +27,4 @@ src/bgAPI.js
 .env*.local
 src/youtubeAPI.js
 
-
+src/ImageGeneratorAPI.js

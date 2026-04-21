@@ -10,6 +10,7 @@ import PdfEditor from './Pages/PdfEditor';
 import QrGenerator from './Pages/QrGenerator';
 import MakePdf from './Pages/MakePdf';
 import VideoConverter from './Pages/VideoConverter';
+import ImageGenerator from './Pages/ImageGenerator';
 import './App.css';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             <Route path="/pdf-edit" element={<PdfEditor />} />
             <Route path="/qr-gen" element={<QrGenerator />} />
            <Route path="/make-pdf" element={<MakePdf />} />
+           <Route path="/image-gen" element={<ImageGenerator />} />
            <Route path="/VideoConverter" element={<VideoConverter />} />
           
          

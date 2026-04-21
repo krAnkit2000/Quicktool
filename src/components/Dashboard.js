@@ -13,6 +13,7 @@ const Dashboard = () => {
     { id: 'make-pdf',         title: 'Make-Pdf',        active: true  },
     { id: 'uuid',             title: 'UUID',            active: true  },
     { id: 'VideoConverter',   title: 'Youtube to audio',      active: true  },
+     { id: 'image-gen',   title: 'ImageGenerator',      active: true  },
      { id: 'qr-gen',           title: 'QR Generator',    active: true  },
     { id: 'empty',            title: 'Empty',           active: false },
   ];

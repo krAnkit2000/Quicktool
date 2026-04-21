@@ -67,7 +67,13 @@ const ToolIcons = {
         fill="#ffffff" 
       />
     </svg>
+  
   ),
+  'image-gen': (
+  <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.8">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+  </svg>
+)
 };
 
 
@@ -80,6 +86,7 @@ const ToolColors = {
   'qr-gen':       { bg: '#f0fdfa', icon: '#76ffef', border: '#04ffe2db' },
   'VideoConverter': { bg: '#fff1f2', icon: '#f10707', border: '#fb0000' },
   'make-pdf':  { bg: '#fff1f2', icon: '#0d2bd3', border: '#1fd543' },
+  'image-gen': { bg: '#fdf2f8', icon: '#ec4899', border: '#fbcfe8' }
 };
 
 const ToolCard = ({ id, title, isActive }) => {
