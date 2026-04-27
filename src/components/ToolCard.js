@@ -40,7 +40,7 @@ const ToolIcons = {
   ),
 
 'qr-gen': (
-  <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.6">
+  <svg viewBox="0 0 24 2  4" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.6">
     {/* Background Grid Pattern - Subtle */}
     <path d="M3 8h18M3 16h18M8 3v18M16 3v18" strokeOpacity="0.1" strokeLinecap="round" />
     
