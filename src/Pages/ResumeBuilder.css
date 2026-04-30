@@ -1,0 +1,93 @@
+.resume-container {
+  display: flex;
+  background: #f4f7f6;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Controls Styles */
+.controls-panel {
+  width: 300px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.input-group input, .input-group textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Resume Paper Base */
+.resume-paper {
+  width: 210mm; /* A4 Width */
+  min-height: 297mm; /* A4 Height */
+  background: white;
+  margin-left: 40px;
+  padding: 20mm;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* --- TEMPLATE 1: CLASSIC (Default - Aapki Image Jaisa) --- */
+.classic .resume-header {
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+}
+.classic .section-title {
+  font-size: 14px;
+  border-bottom: 1px solid #333;
+  margin-top: 15px;
+  font-weight: bold;
+}
+.classic .section-content {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* --- TEMPLATE 2: MODERN PINK --- */
+.modern {
+  background: #fff;
+  border-left: 15px solid #ec4899;
+}
+.modern .resume-header h1 {
+  color: #ec4899;
+  text-transform: uppercase;
+}
+.modern .section-title {
+  background: #fce7f3;
+  color: #be185d;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+/* --- TEMPLATE 3: MINIMALIST --- */
+.minimal .resume-header {
+  text-align: left;
+}
+.minimal .section-title {
+  color: #64748b;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* Download Button Styles */
+.download-btn-premium {
+  width: 100%;
+  background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+}
