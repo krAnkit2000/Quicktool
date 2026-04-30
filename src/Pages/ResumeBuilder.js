@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ResumeBuilder.css";
 
 // ── SKILLS PARSER ────────────────────────────────────────────────────────────
@@ -25,10 +26,11 @@ function parseSkills(raw) {
 
 // ── TEMPLATES ────────────────────────────────────────────────────────────────
 const TEMPLATES = [
+    { id: "minimal",  label: "Minimal",  accent: "#111111" },
   { id: "classic",  label: "Classic",  accent: "#1e3a5f" },
   { id: "modern",   label: "Modern",   accent: "#0f766e" },
   { id: "bold",     label: "Bold",     accent: "#7c3aed" },
-  { id: "minimal",  label: "Minimal",  accent: "#111111" },
+  
 ];
 
 // ── DEFAULT FORM DATA ────────────────────────────────────────────────────────
@@ -60,7 +62,7 @@ const Input = ({ label, value, onChange, placeholder, textarea }) =>
     </div>
   );
 
-// ── RESUME PREVIEW TEMPLATES ─────────────────────────────────────────────────
+// ─────── RESUME PREVIEW TEMPLATES ─────────────────────────────────────────────────
 
 // Classic — two-column, navy sidebar
 function ClassicResume({ data, accent }) {
@@ -330,7 +332,19 @@ function MinimalResume({ data }) {
           ))}
         </div>
       )}
-     
+      {data.education.some(e => e.school) && (
+        <div className="rmin-section">
+          <div className="rmin-sec-title">Education</div>
+          {data.education.map((e, i) => e.school && (
+            <div key={i} className="rmin-exp">
+              <div className="rmin-exp-top">
+                <span className="rmin-exp-role">{e.degree}, {e.school}</span>
+                <span className="rmin-exp-dur">{e.year}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
       {skillGroups.length > 0 && skillGroups[0].items.length > 0 && (
         <div className="rmin-section">
           <div className="rmin-sec-title">Skills</div>
@@ -353,31 +367,38 @@ function MinimalResume({ data }) {
           ))}
         </div>
       )}
-
-
-       {data.education.some(e => e.school) && (
-        <div className="rmin-section">
-          <div className="rmin-sec-title">Education</div>
-          {data.education.map((e, i) => e.school && (
-            <div key={i} className="rmin-exp">
-              <div className="rmin-exp-top">
-                <span className="rmin-exp-role">{e.degree}, {e.school}</span>
-                <span className="rmin-exp-dur">{e.year}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 }
 
-// ── MAIN COMPONENT ────────────────────────────────────────────────────────────
-export default function ResumeBuilder({ setActiveTool }) {
+// ────────────── MAIN COMPONENT ────────────────────────────────────────────────────────────
+export default function ResumeBuilder() {
+  const navigate = useNavigate();
   const [data, setData]           = useState(DEFAULT);
-  const [template, setTemplate]   = useState("classic");
+  const [template, setTemplate]   = useState("minimal");
   const [tab, setTab]             = useState("form");   // form | preview
   const printRef                  = useRef(null);
+  const scalerRef                 = useRef(null);
+
+  // Scale A4 preview to fit the panel without horizontal scroll
+  useEffect(() => {
+    const scalePreview = () => {
+      if (!scalerRef.current) return;
+      const wrap = scalerRef.current.parentElement; // rb-preview-scaler-wrap
+      if (!wrap) return;
+      const wrapWidth = wrap.clientWidth;
+      const a4Width = 794; // 210mm at 96dpi
+      const scale = wrapWidth / a4Width;
+      scalerRef.current.style.transform = `scale(${scale})`;
+      scalerRef.current.style.transformOrigin = "top left";
+      scalerRef.current.style.width = `${a4Width}px`;
+      // Set wrap height so content below doesn't overlap
+      wrap.style.height = `${1123 * scale}px`;
+    };
+    scalePreview();
+    window.addEventListener("resize", scalePreview);
+    return () => window.removeEventListener("resize", scalePreview);
+  }, []);
 
   const tmpl = TEMPLATES.find(t => t.id === template);
 
@@ -408,7 +429,7 @@ export default function ResumeBuilder({ setActiveTool }) {
    ResumeBuilder.css — Resume Builder + 4 Templates
    ============================================================ */
 
-/* ── Page Layout ─────────────────────────────────────────── */
+/* ────────────── Page Layout ─────────────────────────────────────────── */
 .rb-page {
   min-height: 100vh;
   background: #f1f5f9;
@@ -652,7 +673,7 @@ export default function ResumeBuilder({ setActiveTool }) {
   .rb-mob-hidden { display: none !important; }
 }
 
-/* ── TEMPLATE: CLASSIC ───────────────────────────────────── */
+/* ────────────── TEMPLATE: CLASSIC ───────────────────────────────────── */
 .resume-classic {
   display: flex;
   min-height: 800px;
@@ -730,7 +751,7 @@ export default function ResumeBuilder({ setActiveTool }) {
 .rc-exp-meta { font-size: 10.5px; color: #64748b; margin-bottom: 4px; }
 .rc-exp-point { font-size: 10.5px; color: #475569; margin-bottom: 2px; padding-left: 8px; }
 
-/* ── TEMPLATE: MODERN ───────────────────────────────────── */
+/* ────────────── TEMPLATE: MODERN ───────────────────────────────────── */
 .resume-modern {
   font-size: 12px;
   min-height: 800px;
@@ -836,7 +857,7 @@ export default function ResumeBuilder({ setActiveTool }) {
 .rb2-edu-year { font-size: 10px; color: #94a3b8; }
 .rb2-skill    { font-size: 10.5px; color: #334155; margin-bottom: 4px; }
 
-/* ── TEMPLATE: MINIMAL ──────────────────────────────────── */
+/* ────────────── TEMPLATE: MINIMAL ──────────────────────────────────── */
 .resume-minimal {
   font-size: 12px;
   padding: 36px 40px;
@@ -886,7 +907,7 @@ export default function ResumeBuilder({ setActiveTool }) {
 .rmin-point    { font-size: 10.5px; color: #555; margin-bottom: 2px; padding-left: 8px; line-height: 1.5; }
 .rmin-skills   { font-size: 11px; color: #444; line-height: 1.8; }
 
-/* ── Responsive ─────────────────────────────────────────── */
+/* ────────────── Responsive ─────────────────────────────────────────── */
 @media (max-width: 900px) {
   .rb-layout {
     grid-template-columns: 1fr;
@@ -952,7 +973,7 @@ export default function ResumeBuilder({ setActiveTool }) {
 
       {/* Top bar */}
       <div className="rb-topbar">
-        <button className="rb-back" onClick={() => setActiveTool("dashboard")}>
+        <button className="rb-back" onClick={() => navigate("/")}>
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
@@ -1070,8 +1091,12 @@ export default function ResumeBuilder({ setActiveTool }) {
         {/* RIGHT — Preview — always visible on desktop, toggled on mobile */}
         <div className={`rb-preview-panel ${tab === "form" ? "rb-mob-hidden" : ""}`}>
           <div className="rb-preview-scroll">
-            <div ref={printRef} className="rb-preview-paper">
-              {renderPreview()}
+            <div className="rb-preview-scaler-wrap">
+              <div ref={scalerRef} className="rb-preview-scaler">
+                <div ref={printRef} className="rb-preview-paper">
+                  {renderPreview()}
+                </div>
+              </div>
             </div>
           </div>
         </div>
