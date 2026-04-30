@@ -36,7 +36,7 @@ function App() {
            <Route path="/make-pdf" element={<MakePdf />} />
            <Route path="/image-gen" element={<ImageGenerator />} />
            <Route path="/VideoConverter" element={<VideoConverter />} />
-          <Route path="/resume-builder" element={<ResumeBuilder />} />
+          <Route path="/ResumeBuilder" element={<ResumeBuilder />} />
          
 
           </Routes>

@@ -1,93 +1,563 @@
-.resume-container {
-  display: flex;
-  background: #f4f7f6;
+/* ============================================================
+   ResumeBuilder.css — Resume Builder + 4 Templates
+   ============================================================ */
+
+/* ── Page Layout ─────────────────────────────────────────── */
+.rb-page {
   min-height: 100vh;
-  padding: 20px;
+  background: #f1f5f9;
+  font-family: 'Segoe UI', sans-serif;
+  padding-bottom: 40px;
 }
 
-/* Controls Styles */
-.controls-panel {
-  width: 300px;
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  height: fit-content;
+/* Top bar */
+.rb-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 14px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.rb-back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.rb-back:hover { opacity: 0.7; }
+
+.rb-topbar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.rb-print-btn {
+  background: #1e293b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.rb-print-btn:hover { opacity: 0.85; }
+
+/* Template selector */
+.rb-templates {
+  display: flex;
+  gap: 8px;
+  padding: 14px 24px;
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+}
+
+.rb-tmpl-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.rb-tmpl-btn:hover { border-color: #94a3b8; }
+.rb-tmpl-btn--active { background: #fff; font-weight: 700; }
+
+.rb-tmpl-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Mobile tab switcher */
+.rb-mob-tabs {
+  display: none;
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+}
+.rb-mob-tab {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #94a3b8;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+.rb-mob-tab.active { color: #3b82f6; border-bottom-color: #3b82f6; }
+
+/* Main layout — side by side */
+.rb-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  gap: 20px;
+}
+
+/* Form panel */
+.rb-form-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  max-height: calc(100vh - 140px);
+  padding-right: 4px;
+}
+.rb-form-panel::-webkit-scrollbar { width: 4px; }
+.rb-form-panel::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+/* Section card */
+.rb-section-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.rb-sec-head {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Form fields */
+.rb-field {
+  margin-bottom: 10px;
+}
+.rb-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.rb-input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: #1e293b;
+  background: #f8fafc;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.rb-input:focus { border-color: #3b82f6; background: #fff; }
+.rb-textarea { resize: vertical; min-height: 70px; }
+
+/* Repeat blocks */
+.rb-repeat-block {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #fafafa;
+}
+.rb-repeat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 10px;
+}
+.rb-add-btn {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #3b82f6;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.rb-add-btn:hover { background: #dbeafe; }
+.rb-remove-btn {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #ef4444;
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Preview panel */
+.rb-preview-panel {
   position: sticky;
   top: 20px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  align-self: start;
 }
-
-.input-group input, .input-group textarea {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+.rb-preview-scroll {
+  background: #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  min-height: 100%;
 }
-
-/* Resume Paper Base */
-.resume-paper {
-  width: 210mm; /* A4 Width */
-  min-height: 297mm; /* A4 Height */
-  background: white;
-  margin-left: 40px;
-  padding: 20mm;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  font-family: 'Arial', sans-serif;
-}
-
-/* --- TEMPLATE 1: CLASSIC (Default - Aapki Image Jaisa) --- */
-.classic .resume-header {
-  text-align: center;
-  border-bottom: 2px solid #000;
-  padding-bottom: 10px;
-}
-.classic .section-title {
-  font-size: 14px;
-  border-bottom: 1px solid #333;
-  margin-top: 15px;
-  font-weight: bold;
-}
-.classic .section-content {
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-/* --- TEMPLATE 2: MODERN PINK --- */
-.modern {
+.rb-preview-paper {
   background: #fff;
-  border-left: 15px solid #ec4899;
-}
-.modern .resume-header h1 {
-  color: #ec4899;
-  text-transform: uppercase;
-}
-.modern .section-title {
-  background: #fce7f3;
-  color: #be185d;
-  padding: 5px 10px;
   border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  overflow: hidden;
+  min-height: 800px;
 }
 
-/* --- TEMPLATE 3: MINIMALIST --- */
-.minimal .resume-header {
-  text-align: left;
+/* Mobile hidden */
+.rb-hidden-mob { display: none; }
+
+/* Hidden only on mobile (used for preview panel toggle) */
+@media (max-width: 900px) {
+  .rb-mob-hidden { display: none !important; }
 }
-.minimal .section-title {
-  color: #64748b;
+
+/* ── TEMPLATE: CLASSIC ───────────────────────────────────── */
+.resume-classic {
+  display: flex;
+  min-height: 800px;
   font-size: 12px;
-  letter-spacing: 2px;
 }
 
-/* Download Button Styles */
-.download-btn-premium {
-  width: 100%;
-  background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-  color: white;
+.rc-sidebar {
+    width: 10rem;
+    flex-shrink: 0;
+    padding: 7px 10px;
+    color: #fff;
+}
+.rc-name {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+.rc-title {
+  font-size: 11px;
+  opacity: 0.85;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+}
+.rc-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+  margin-bottom: 12px;
+}
+.rc-contact-item {
+  font-size: 10.5px;
+  opacity: 0.9;
+  margin-bottom: 6px;
+  word-break: break-all;
+}
+.rc-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 6px;
+}
+.rc-skill-chip {
+  background: rgba(255,255,255,0.15);
+  border-radius: 3px;
+  padding: 3px 8px;
+  font-size: 10px;
+  margin-bottom: 5px;
+  display: inline-block;
+  margin-right: 4px;
+}
+.rc-edu-school { font-weight: 700; font-size: 11px; margin-top: 8px; }
+.rc-edu-deg    { font-size: 10px; opacity: 0.85; }
+.rc-edu-year   { font-size: 10px; opacity: 0.65; }
+
+.rc-main {
+  flex: 1;
+  padding: 28px 22px;
+}
+.rc-block { margin-bottom: 20px; }
+.rc-main-title {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.rc-main-divider { height: 2px; margin-bottom: 10px; }
+.rc-summary { font-size: 11px; color: #475569; line-height: 1.6; 
+text-align: justify;
+}
+.rc-exp-item { margin-bottom: 12px; }
+.rc-exp-role { font-weight: 700; font-size: 12px; color: #1e293b; }
+.rc-exp-meta { font-size: 10.5px; color: #64748b; margin-bottom: 4px; }
+.rc-exp-point { font-size: 10.5px; color: #475569; margin-bottom: 2px; padding-left: 8px; }
+
+/* ── TEMPLATE: MODERN ───────────────────────────────────── */
+.resume-modern {
+  font-size: 12px;
+  min-height: 800px;
+}
+.rm-header {
+  padding: 24px 28px 16px;
+}
+.rm-name {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+.rm-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+.rm-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 10.5px;
+  color: #64748b;
+}
+.rm-body { padding: 18px 28px; }
+.rm-section { margin-bottom: 18px; }
+.rm-sec-title {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
+}
+.rm-text { font-size: 11px; color: #475569; line-height: 1.6; }
+.rm-exp { margin-bottom: 12px; }
+.rm-exp-top { display: flex; justify-content: space-between; align-items: baseline; }
+.rm-exp-role { font-weight: 700; font-size: 12px; color: #0f172a; }
+.rm-exp-dur  { font-size: 10px; color: #94a3b8; }
+.rm-exp-co   { font-size: 10.5px; color: #64748b; margin-bottom: 4px; }
+.rm-point    { font-size: 10.5px; color: #475569; margin-bottom: 2px; padding-left: 8px; }
+.rm-two-col  { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.rm-edu      { margin-bottom: 8px; }
+.rm-edu-deg  { font-weight: 600; font-size: 11px; color: #0f172a; }
+.rm-edu-school { font-size: 10.5px; color: #64748b; }
+.rm-skills   { display: flex; flex-wrap: wrap; gap: 5px; }
+.rm-skill {
+  border: 1px solid;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* ── TEMPLATE: BOLD ─────────────────────────────────────── */
+.resume-bold { font-size: 12px; min-height: 800px; }
+.rb2-header {
+  padding: 28px 28px 20px;
+  color: #fff;
+}
+.rb2-name {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+.rb2-title {
+  font-size: 13px;
+  opacity: 0.85;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.rb2-contacts {
+  display: flex;
+  gap: 14px;
+  font-size: 10.5px;
+  opacity: 0.8;
+  flex-wrap: wrap;
+}
+.rb2-body { padding: 18px 28px; }
+.rb2-section { margin-bottom: 16px; }
+.rb2-sec-label {
+  display: inline-block;
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+.rb2-text { font-size: 11px; color: #475569; line-height: 1.6; }
+.rb2-exp  { margin-bottom: 12px; }
+.rb2-exp-role { font-size: 12px; font-weight: 700; color: #0f172a; }
+.rb2-exp-co   { font-weight: 400; color: #64748b; }
+.rb2-exp-dur  { font-size: 10.5px; color: #94a3b8; margin-bottom: 4px; }
+.rb2-point    { font-size: 10.5px; color: #475569; margin-bottom: 2px; padding-left: 8px; }
+.rb2-two      { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.rb2-edu      { margin-bottom: 8px; }
+.rb2-edu-deg  { font-weight: 600; font-size: 11px; color: #0f172a; }
+.rb2-edu-school { font-size: 10.5px; color: #64748b; }
+.rb2-edu-year { font-size: 10px; color: #94a3b8; }
+.rb2-skill    { font-size: 10.5px; color: #334155; margin-bottom: 4px; }
+
+/* ── TEMPLATE: MINIMAL ──────────────────────────────────── */
+.resume-minimal {
+  font-size: 12px;
+  padding: 36px 40px;
+  min-height: 800px;
+  background: #fff;
+  color: #111;
+}
+.rmin-top { margin-bottom: 16px; }
+.rmin-name {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: #000;
+  margin-bottom: 2px;
+}
+.rmin-title {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+  font-weight: 400;
+}
+.rmin-contacts { font-size: 10.5px; color: #888; }
+.rmin-hr {
   border: none;
-  padding: 15px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 20px;
+  border-top: 1px solid #e2e8f0;
+  margin: 14px 0;
+}
+.rmin-summary { font-size: 11px; color: #444; line-height: 1.7; margin-bottom: 0; }
+.rmin-section { margin-bottom: 14px; }
+.rmin-sec-title {
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 8px;
+}
+.rmin-exp { margin-bottom: 10px; }
+.rmin-exp-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 3px;
+}
+.rmin-exp-role { font-weight: 700; font-size: 11.5px; color: #111; }
+.rmin-exp-dur  { font-size: 10px; color: #999; }
+.rmin-point    { font-size: 10.5px; color: #555; margin-bottom: 2px; padding-left: 8px; line-height: 1.5; }
+.rmin-skills   { font-size: 11px; color: #444; line-height: 1.8; }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .rb-layout {
+    grid-template-columns: 1fr;
+    padding: 12px 14px;
+  }
+  .rb-form-panel {
+    max-height: none;
+  }
+  .rb-preview-panel {
+    position: static;
+    height: auto;
+  }
+  .rb-mob-tabs { display: flex; }
+  .rb-hidden-mob { display: none !important; }
+  .rb-form-panel:not(.rb-hidden-mob),
+  .rb-preview-panel:not(.rb-hidden-mob) { display: flex; flex-direction: column; }
+}
+
+
+/* ── Section dividers ───────────────────────────────────── */
+.rc-block          { margin-bottom: 7px; padding-bottom: 1px; border-bottom: 1px solid #e8edf2; }
+.rc-block:last-child { border-bottom: none; }
+
+.rm-section        { margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid #f0f4f8; }
+.rm-section:last-child { border-bottom: none; }
+
+.rb2-section       { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; }
+.rb2-section:last-child { border-bottom: none; }
+
+.rmin-section      { margin-bottom: 14px; padding-bottom: 10px; }
+.rmin-hr           { border: none; border-top: 1px solid #e2e8f0; margin: 10px 0; }
+
+/* ── Skill category labels ──────────────────────────────── */
+.rc-skill-category {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  opacity: 0.6;
+  margin-bottom: 4px;
+  margin-top: 6px;
+}
+
+.rm-skill-group    { margin-bottom: 8px; }
+.rm-skill-cat {
+  font-size: 10px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 4px;
+}
+
+.rb2-skill-cat {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+
+.rmin-skill-cat {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #333;
+}
+
+@page {
+  margin: 0;
+  size: A4;
+}
+
+@media print {
+  .rb-page { background: #fff; padding: 0; }
+  .rb-topbar, .rb-templates, .rb-mob-tabs, .rb-form-panel { display: none !important; }
+  .rb-layout { grid-template-columns: 1fr; padding: 0; }
+  .rb-preview-panel { position: static; height: auto; }
+  .rb-preview-scroll { background: none; padding: 0; }
+  .rb-preview-paper { box-shadow: none; }
 }
